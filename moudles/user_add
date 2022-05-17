@@ -1,0 +1,26 @@
+function user_add()
+{
+echo -e "This script for adding new users\n"
+
+### Get the user data for creating new user ###
+#==============================================
+echo "Please Enter your username: "
+read username
+echo "Please Enter your password: "
+read -s password
+
+
+#### Check if the entered username is already exist or not.
+grep -w "$username" /etc/passwd
+if [ $? -eq 0 ]
+then
+	echo "The entered username $username is already exist"
+else 
+#useradd command 
+#ex:useradd mohamedahmed -m -d /home/mohamedahmed -p P@ssw0rd -s /bin/bash
+
+useradd $username -m -d /home/$username -p $password
+
+echo "Congrats, the user $username is created"
+fi
+}

@@ -1,0 +1,19 @@
+function user_del() {
+
+echo -e "This script for delet users\n"
+
+### Get the user data for deleting user ###
+#==============================================
+echo "Please Enter your username: "
+read username
+
+#### Check if the entered username is already exist or not.
+grep -w "$username" /etc/passwd >/dev/null
+if [ $? -eq 0 ]
+then
+	userdel $username
+	echo "Congrats, the user $username is deleted"
+else 
+echo "The entered username $username doesn't already exist"
+fi
+}
